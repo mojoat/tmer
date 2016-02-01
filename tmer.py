@@ -266,17 +266,17 @@ class TranscriptClassifier:
 		handle.close()
 		handle_conv.close()
 
-if len(sys.argv) < 3:
+if len(sys.argv) < 3 or len(sys.argv)>4:
 	print("Annotates sequences with cluster information based on shared kmers")
 	print("Usage: tmer.py <input.fasta> <output.fasta> [<kmer length=50>]")
+	raise SystemExit
 
-if len(sys.argv)>3:
+if len(sys.argv)==4:
 	KMER_LEN=int(sys.argv[3])
 
 main = TranscriptClassifier()
 main.loadFasta(sys.argv[1])
 main.buildKmerCatalog()
-
 main.buildAdjMatrix()
 
 
